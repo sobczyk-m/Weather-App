@@ -2,13 +2,15 @@ import './Search.pcss'
 import React, {useEffect, useState} from "react";
 import {BsFillSendFill, MdOutlineClose} from "react-icons/all";
 
-interface GeoLocation {
+interface Location {
     country: string;
     lat: number;
     lon: number;
     name: string;
     state: string;
 }
+
+type LocationList = Location[];
 
 function Search() {
     const [focus, setFocus] = useState(false)
@@ -23,15 +25,13 @@ function Search() {
         handleNoInput()
     }, [input])
 
-    async function getResponse(endPoint: string) {
+    const getLocationList = async (endPoint: string): Promise<LocationList> => {
         const response = await fetch(endPoint)
-        const data = await response.json()
+
         if (response.ok) {
-            console.log(response)
-            return data
+            return response.json();
         } else {
-            console.log(response)
-            return Error("An API error occurred")
+            return Promise.reject(response);
         }
     }
 
@@ -49,31 +49,28 @@ function Search() {
     }
 
     const handleSendClick = async () => {
-        const locations = getResponse(geoEndPoint)
+        const locationsList = document.getElementById("locations")!
+        locationsList.textContent = ''
 
-        locations.then(value => {
-            console.log(value)
-            const locationsList = document.getElementById("locations")!
-            locationsList.textContent = ''
-
-            if (value.length === 0) {
+        try {
+            const respList = await getLocationList(geoEndPoint)
+            if (respList.length === 0) {
                 const locationRow = document.createElement("li")
                 locationRow.className = "location"
                 locationRow.innerText = `City not found`
                 locationsList?.appendChild(locationRow)
             } else {
-                value.map((city: GeoLocation) => {
-                    console.log(value)
-                    console.log(`${city.name}, ${city.country}, ${city.state}, Geo coords:[${city.lat}, ${city.lon}]`)
-
+                respList.map((location) => {
                     const locationRow = document.createElement("li")
                     locationRow.className = "location"
-                    locationRow.innerText = `${city.name}, ${city.country}, ${city.state}, Geo coords:[${city.lat}, ${city.lon}]`
+                    locationRow.innerText = `${location.name}, ${location.country}, ${location.state}, Geo coords:[${location.lat}, ${location.lon}]`
                     locationsList?.appendChild(locationRow)
                 })
             }
-            setDisplayResults(true)
-        })
+        } catch (e) {
+            console.error(e)
+        }
+        setDisplayResults(true)
     }
 
     const handleDeleteClick = () => {
