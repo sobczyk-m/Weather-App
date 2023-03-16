@@ -1,9 +1,13 @@
-import './App.css'
+import './App.pcss'
+import Search from "./Search";
+import React from 'react';
 
 function App() {
 
     return (
-        <div></div>
+        <React.Fragment>
+            <Search/>
+        </React.Fragment>
     )
 }
 
