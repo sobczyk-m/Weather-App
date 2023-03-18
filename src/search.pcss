@@ -2,11 +2,16 @@
     --big-radius: 40px;
     --small-radius: 20px;
     --small-border: 1px solid black;
+    --red: #f71c36;
+    --light-blue: #a3b3ff;
+    --medium-blue: #758bfd;
+    --strong-blue: #365af7;
 }
 
 .search-wrapper {
     width: 80%;
     max-width: 800px;
+
     .search {
         font-size: 2.5rem;
 
@@ -16,7 +21,7 @@
 
         &.no-items {
             border: 0;
-            box-shadow: 0 0 10px blue;
+            box-shadow: 0 0 10px var(--strong-blue);
         }
     }
 
@@ -48,7 +53,7 @@
         border-left: var(--small-border);
 
         &:hover {
-            color: #ef233c;
+            color: var(--red);
         }
     }
 
@@ -56,7 +61,7 @@
         border-right: var(--small-border);
 
         &:hover {
-            color: #758bfd;
+            color: var(--medium-blue);
         }
     }
 
@@ -65,30 +70,5 @@
         width: 90%;
         left: 5%;
 
-        #locations {
-            width: 100%;
-            position: absolute;
-
-            &.no-items {
-                border: none;
-            }
-
-            &.with-items {
-                border: var(--small-border);
-                border-top: none;
-                border-bottom-right-radius: var(--small-radius);
-                border-bottom-left-radius: var(--small-radius);
-            }
-
-            .location {
-                font-size: 1.2rem;
-                padding: 15px 10px 15px 50px;
-                list-style: none;
-
-                &:nth-child(n):not(:first-child) {
-                    border-top: var(--small-border);
-                }
-            }
-        }
     }
 }

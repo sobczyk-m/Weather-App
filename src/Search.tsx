@@ -1,21 +1,14 @@
-import './Search.pcss'
+import './search.pcss'
 import React, {useEffect, useState} from "react";
 import {BsFillSendFill, MdOutlineClose} from "react-icons/all";
+import LocationList, {LocationCollection} from "./LocationList";
 
-interface Location {
-    country: string;
-    lat: number;
-    lon: number;
-    name: string;
-    state: string;
-}
-
-type LocationList = Location[];
+export type Locations = LocationCollection | null
 
 function Search() {
     const [focus, setFocus] = useState(false)
     const [input, setInput] = useState("")
-    const [displayResults, setDisplayResults] = useState(false)
+    const [locations, setLocations] = useState<Locations>(null)
 
     const geoApiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='
     const apiKey = import.meta.env.VITE_OWM_API_KEY
@@ -25,7 +18,7 @@ function Search() {
         handleNoInput()
     }, [input])
 
-    const getLocationList = async (endPoint: string): Promise<LocationList> => {
+    const getLocationList = async (endPoint: string): Promise<LocationCollection> => {
         const response = await fetch(endPoint)
 
         if (response.ok) {
@@ -49,60 +42,34 @@ function Search() {
     }
 
     const handleSendClick = async () => {
-        const locationsList = document.getElementById("locations")!
-        locationsList.textContent = ''
-
         try {
             const respList = await getLocationList(geoEndPoint)
-            if (respList.length === 0) {
-                const locationRow = document.createElement("li")
-                locationRow.className = "location"
-                locationRow.innerText = `City not found`
-                locationsList?.appendChild(locationRow)
-            } else {
-                respList.map((location) => {
-                    const locationRow = document.createElement("li")
-                    locationRow.className = "location"
-                    locationRow.innerText = `${location.name}, ${location.country}, ${location.state}, Geo coords:[${location.lat}, ${location.lon}]`
-                    locationsList?.appendChild(locationRow)
-                })
-            }
+            setLocations(respList)
         } catch (e) {
             console.error(e)
         }
-        setDisplayResults(true)
     }
 
-    const handleDeleteClick = () => {
-        const locationsList = document.getElementById("locations")!
-        locationsList.textContent = ''
-        setDisplayResults(false)
-    }
-
-    const deleteResults = () => {
-        if (displayResults) {
-            const locationsList = document.getElementById("locations")!
-            locationsList.textContent = ''
-        }
+    const handleCancelClick = () => {
+        setInput("")
+        locations? setLocations(null): null
     }
 
     return (
         <React.Fragment>
             <div className={"search-wrapper"}>
                 <div className={focus ? "search no-items" : "search"}>
-                    {/*<div className={"search no-items"}>*/}
                     <span className={"send-btn"} onClick={handleSendClick}><BsFillSendFill/></span>
                     <input type="text" onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
                            placeholder={"Enter the city name"} className={"search-input"} value={input}
                            onChange={e => {
                                setInput(e.target.value)
-                               setDisplayResults(false)
-                               deleteResults()
+                               locations ? setLocations(null) : null
                            }}/>
-                    <span className={"cancel-btn"} onClick={handleDeleteClick}><MdOutlineClose/></span>
+                    <span className={"cancel-btn"} onClick={handleCancelClick}><MdOutlineClose/></span>
                 </div>
                 <div className={"locations-wrapper"}>
-                    <ul id={"locations"} className={displayResults ? "with-items" : "no-items"}></ul>
+                    {locations ? <LocationList locations={locations}/> : null}
                 </div>
             </div>
         </React.Fragment>
