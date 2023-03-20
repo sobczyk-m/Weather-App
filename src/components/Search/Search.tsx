@@ -1,7 +1,7 @@
-import './search.pcss'
+import styles from './Search.module.pcss'
 import React, {useEffect, useState} from "react";
 import {BsFillSendFill, MdOutlineClose} from "react-icons/all";
-import LocationList, {LocationCollection} from "./LocationList";
+import LocationList, {LocationCollection} from "../LocationList/LocationList";
 
 export type Locations = LocationCollection | null
 
@@ -29,15 +29,15 @@ function Search() {
     }
 
     const handleNoInput = () => {
-        const sendBtn = document.getElementsByClassName("send-btn")
-        const cancelBtn = document.getElementsByClassName("cancel-btn")
+        const sendBtn = document.getElementsByClassName(styles.sendBtn)
+        const cancelBtn = document.getElementsByClassName(styles.cancelBtn)
 
         if (input === "") {
-            sendBtn[0].classList.add("no-input")
-            cancelBtn[0].classList.add("no-input")
+            sendBtn[0].classList.add(styles.noInput)
+            cancelBtn[0].classList.add(styles.noInput)
         } else {
-            sendBtn[0].classList.remove("no-input")
-            cancelBtn[0].classList.remove("no-input")
+            sendBtn[0].classList.remove(styles.noInput)
+            cancelBtn[0].classList.remove(styles.noInput)
         }
     }
 
@@ -52,23 +52,23 @@ function Search() {
 
     const handleCancelClick = () => {
         setInput("")
-        locations? setLocations(null): null
+        locations ? setLocations(null) : null
     }
 
     return (
         <React.Fragment>
-            <div className={"search-wrapper"}>
-                <div className={focus ? "search no-items" : "search"}>
-                    <span className={"send-btn"} onClick={handleSendClick}><BsFillSendFill/></span>
+            <div className={styles.searchWrapper}>
+                <div className={focus ? styles.search + " " + styles.noItems : styles.search}>
+                    <span className={styles.sendBtn} onClick={handleSendClick}><BsFillSendFill/></span>
                     <input type="text" onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
-                           placeholder={"Enter the city name"} className={"search-input"} value={input}
+                           placeholder={"Enter the city name"} className={styles.searchInput} value={input}
                            onChange={e => {
                                setInput(e.target.value)
                                locations ? setLocations(null) : null
                            }}/>
-                    <span className={"cancel-btn"} onClick={handleCancelClick}><MdOutlineClose/></span>
+                    <span className={styles.cancelBtn} onClick={handleCancelClick}><MdOutlineClose/></span>
                 </div>
-                <div className={"locations-wrapper"}>
+                <div className={styles.locationsWrapper}>
                     {locations ? <LocationList locations={locations}/> : null}
                 </div>
             </div>

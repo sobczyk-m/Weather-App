@@ -1,0 +1,27 @@
+#locations {
+    width: 100%;
+    position: absolute;
+    border: var(--small-border);
+    border-top: none;
+    border-bottom-right-radius: var(--small-radius);
+    border-bottom-left-radius: var(--small-radius);
+}
+
+.location {
+    font-size: 1.2rem;
+    padding: 15px 10px 15px 50px;
+    list-style: none;
+
+    &:hover {
+        background-color: var(--light-blue);
+
+        &:last-child {
+            border-bottom-right-radius: var(--small-radius);
+            border-bottom-left-radius: var(--small-radius);
+        }
+    }
+
+    &:nth-child(n):not(:first-child) {
+        border-top: var(--small-border);
+    }
+}
