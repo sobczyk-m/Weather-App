@@ -1,7 +1,7 @@
-import {configureStore, createStore} from "@reduxjs/toolkit";
-import locationReducer from "./reducers/locationSlice";
+import {configureStore} from "@reduxjs/toolkit";
+import locationReducer from "./reducers/LocationSlice";
 
-export default configureStore({
+export const store = configureStore({
     reducer: {
         location: locationReducer
     }

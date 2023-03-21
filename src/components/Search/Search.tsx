@@ -2,6 +2,7 @@ import styles from './Search.module.pcss'
 import React, {useEffect, useState} from "react";
 import {BsFillSendFill, MdOutlineClose} from "react-icons/all";
 import LocationList, {LocationCollection} from "../LocationList/LocationList";
+import {getEndPoint} from "../../utils/getEndPoint";
 
 export type Locations = LocationCollection | null
 
@@ -10,22 +11,12 @@ function Search() {
     const [input, setInput] = useState("")
     const [locations, setLocations] = useState<Locations>(null)
 
-    const geoApiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='
-    const apiKey = import.meta.env.VITE_OWM_API_KEY
-    const geoEndPoint = geoApiUrl + input + "&limit=5" + "&appid=" + apiKey
-
     useEffect(() => {
         handleNoInput()
     }, [input])
 
     const getLocationList = async (endPoint: string): Promise<LocationCollection> => {
-        const response = await fetch(endPoint)
-
-        if (response.ok) {
-            return response.json();
-        } else {
-            return Promise.reject(response);
-        }
+        return getEndPoint(endPoint)
     }
 
     const handleNoInput = () => {
@@ -43,6 +34,10 @@ function Search() {
 
     const handleSendClick = async () => {
         try {
+            const geoApiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='
+            const apiKey = import.meta.env.VITE_OWM_API_KEY
+            const geoEndPoint = geoApiUrl + input + "&limit=5" + "&appid=" + apiKey
+
             const respList = await getLocationList(geoEndPoint)
             setLocations(respList)
         } catch (e) {
