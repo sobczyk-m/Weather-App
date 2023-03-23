@@ -1,0 +1,39 @@
+.widget {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.weatherWrapper {
+    height: 90%;
+    display: flex;
+}
+
+.sectionContainer {
+    height: 10%;
+    border-radius: 0 0 40px 40px;
+}
+
+#weather {
+    height: 100%;
+    width: 100%;
+}
+
+#moreBtn {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    font-size: 1.5rem;
+
+    & span {
+        text-align: center;
+        white-space: pre-line;
+        line-height: 0.9
+    }
+}

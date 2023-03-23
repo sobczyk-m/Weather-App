@@ -6,3 +6,5 @@ export const store = configureStore({
         location: locationReducer
     }
 });
+
+export type RootState = ReturnType<typeof store.getState>
