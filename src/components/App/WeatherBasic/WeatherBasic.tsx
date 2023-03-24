@@ -1,7 +1,7 @@
-import styles from "./BasicWeather.module.pcss";
+import styles from "./WeatherBasic.module.pcss";
 import React from "react";
 
-interface BasicWeatherProps {
+interface WeatherBasicProps {
     location: string,
     iconSrc: string,
     iconDescription: string,
@@ -11,7 +11,7 @@ interface BasicWeatherProps {
     uvi: string
 }
 
-function BasicWeather({location, iconSrc, iconDescription, temp, feelsLike, wind, uvi}: BasicWeatherProps) {
+function WeatherBasic({location, iconSrc, iconDescription, temp, feelsLike, wind, uvi}: WeatherBasicProps) {
 
     return (
         <React.Fragment>
@@ -37,4 +37,4 @@ function BasicWeather({location, iconSrc, iconDescription, temp, feelsLike, wind
     )
 }
 
-export default BasicWeather
+export default WeatherBasic

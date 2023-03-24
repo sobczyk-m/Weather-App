@@ -12,6 +12,7 @@ interface Place {
 }
 
 export interface Forecast {
+    timezone: string | null,
     current: CurrentForecast | null,
     hourly: HourlyForecast | null,
     daily: DailyForecast | null,
@@ -88,6 +89,7 @@ const initialState: LocationState = {
         lon: null
     },
     weather: {
+        timezone: null,
         current: null,
         hourly: null,
         daily: null,

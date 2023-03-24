@@ -34,7 +34,12 @@ function LocationList({locations}: LocationListProps) {
                 oneCallApiUrl + "lat=" + lat + "&lon=" + lon + "&units=metric" + "&exclude=minutely,alerts" + "&appid=" + apiKey
 
             const weather = await getWeather(oneCallEndPoint)
-            dispatch(setWeather({current: weather.current, hourly: weather.hourly, daily: weather.daily}))
+            dispatch(setWeather({
+                timezone: weather.timezone,
+                current: weather.current,
+                hourly: weather.hourly,
+                daily: weather.daily
+            }))
         } catch (e) {
             console.error(e)
         }
