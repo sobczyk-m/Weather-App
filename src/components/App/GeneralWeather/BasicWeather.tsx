@@ -3,7 +3,7 @@ import React from "react";
 
 interface BasicWeatherProps {
     location: string,
-    icon: string,
+    iconSrc: string,
     iconDescription: string,
     temp: string,
     feelsLike: string,
@@ -11,16 +11,18 @@ interface BasicWeatherProps {
     uvi: string
 }
 
-function BasicWeather({location, icon, iconDescription, temp, feelsLike, wind, uvi}: BasicWeatherProps) {
+function BasicWeather({location, iconSrc, iconDescription, temp, feelsLike, wind, uvi}: BasicWeatherProps) {
 
     return (
         <React.Fragment>
             <div id={styles.weather}>
-                <div id={styles.locationName}>{location}</div>
+                <span id={styles.locationName}>{location}</span>
                 <div id={styles.description}>
                     <div id={styles.leftColumn}>
-                        <div id={styles.icon}>{icon}</div>
-                        <div id={styles.iconDescription}>{iconDescription}</div>
+                        <figure>
+                            <img id={styles.icon} src={iconSrc} alt={"Weather condition"}/>
+                            <figcaption id={styles.iconDescription}>{iconDescription}</figcaption>
+                        </figure>
                     </div>
                     <div id={styles.rightColumn}>
                         <div id={styles.temp}>{temp}<span
