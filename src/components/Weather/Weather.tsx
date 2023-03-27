@@ -1,11 +1,16 @@
 import styles from "./Weather.module.pcss";
-import React, {useState} from "react";
+import sectionBarStyles from "../App/SectionBar/SectionBar.module.pcss";
+import React, {useEffect, useState} from "react";
 import WeatherBasic from "../App/WeatherBasic/WeatherBasic";
 import {AiOutlineDoubleLeft, AiOutlineDoubleRight} from "react-icons/all";
 import SectionBar from "../App/SectionBar/SectionBar";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import WeatherDetail from "../App/WeatherDetails/WeatherDetail";
+import PeriodList from "../App/PeriodSelection/PeriodList";
+import {formatTime} from "../../utils/formatTime";
+import {getWeatherIcon} from "../../utils/getWeatherIcon";
+
 
 function Weather() {
     const [withDetails, setWithDetails] = useState(false)
@@ -18,7 +23,6 @@ function Weather() {
     const wind = useSelector((state: RootState) => (state.location.weather.current!.wind_speed! * 3600 / 1000).toFixed(1))
     const uvi = useSelector((state: RootState) => state.location.weather.current!.uvi.toFixed(1))
 
-
     const clouds = useSelector((state: RootState) => state.location.weather.current!.clouds)
     const pressure = useSelector((state: RootState) => state.location.weather.current!.pressure)
     const visibility = useSelector((state: RootState) => state.location.weather.current!.visibility / 1000)
@@ -28,19 +32,24 @@ function Weather() {
     const sunrise = useSelector((state: RootState) => state.location.weather.current!.sunrise)
     const sunset = useSelector((state: RootState) => state.location.weather.current!.sunset)
 
+    const scope = useSelector((state: RootState) => state.scope)
 
-    function formatTime(unixTime: number, timezone: string) {
-        const dtFormat = new Intl.DateTimeFormat('pl-PL', {
-            timeStyle: 'short',
-            timeZone: timezone
-        });
+    useEffect(() => {
+        if (withDetails) {
+            document.getElementsByClassName(styles.widget)[0].classList.add(styles.activeDetails)
+        } else {
+            document.getElementsByClassName(styles.widget)[0].classList.remove(styles.activeDetails)
+        }
 
-        return dtFormat.format(new Date(unixTime * 1e3));
-    }
+    }, [withDetails])
 
-    const iconUrl = "https://openweathermap.org/img/wn/"
-    const iconSize = "@4x"
-    const iconEndPoint = iconUrl + iconCode + iconSize + ".png"
+    useEffect(() => {
+        if (scope.data === "48h" || scope.data === "8days") {
+            document.getElementById(sectionBarStyles.bar)?.classList.add(sectionBarStyles.activePeriod)
+        } else {
+            document.getElementById(sectionBarStyles.bar)?.classList.remove(sectionBarStyles.activePeriod)
+        }
+    }, [scope])
 
     const handleMoreBtnClick = () => {
         setWithDetails(prevState => !prevState)
@@ -50,22 +59,22 @@ function Weather() {
         <div className={styles.container}>
             <div className={styles.widget}>
                 <div id={styles.weatherWrapper}>
-                    <WeatherBasic uvi={uvi} temp={temp} location={placeName} iconSrc={iconEndPoint}
+                    <WeatherBasic uvi={uvi} temp={temp} location={placeName} iconSrc={getWeatherIcon(iconCode, "large")}
                                   iconDescription={iconDescription} feelsLike={feelsLike} wind={wind}/>
                     {withDetails ? <WeatherDetail clouds={clouds} pressure={pressure} visibility={visibility}
                                                   dew_point={dewPoint} humidity={humidity}
-                                                  sunrise={formatTime(sunrise, timezone)}
-                                                  sunset={formatTime(sunset, timezone)}/> : null}
+                                                  sunrise={formatTime(sunrise, timezone, "hour")}
+                                                  sunset={formatTime(sunset, timezone, "hour")}/> : null}
                     <div onClick={handleMoreBtnClick} id={styles.moreBtn}>
                         <div>
-                            {withDetails ? <AiOutlineDoubleLeft className={styles.lessBtn}/> :
-                                <AiOutlineDoubleRight/>}
+                            {withDetails ? <AiOutlineDoubleLeft className={styles.lessBtn}/> : <AiOutlineDoubleRight/>}
                         </div>
                     </div>
                 </div>
                 <div className={styles.sectionContainer}>
                     <SectionBar/>
                 </div>
+                {scope.data === "48h" || scope.data === "8days" ? <PeriodList/> : null}
             </div>
         </div>
     )
