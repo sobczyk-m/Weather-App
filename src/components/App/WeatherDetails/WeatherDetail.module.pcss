@@ -4,17 +4,20 @@
     grid-template-rows: auto;
     padding: 30px 0 20px 0;
     gap: 30px 50px;
+    justify-items: center;
+    align-content: center;
 }
 
 .detail {
     font-size: 1.1rem;
+    display: flex;
 
     :nth-child(n) {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        align-items: center;
-        justify-content: center;
+        white-space: nowrap;
+        justify-content: space-between;
         text-align: center;
     }
 }

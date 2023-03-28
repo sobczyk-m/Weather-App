@@ -18,17 +18,31 @@ export interface Forecast {
     daily: DailyForecast | null,
 }
 
-interface CurrentForecast extends CommonForecast {
+export interface CurrentForecast extends CommonForecast {
     temp: number,
     feels_like: number,
     sunrise: number,
-    sunset: number
+    sunset: number,
+    visibility: number,
+    rain?: {
+        "1h": number,
+    },
+    snow?: {
+        "1h": number
+    }
 }
 
 interface HourForecast extends CommonForecast {
     temp: number,
     feels_like: number,
-    pop: number
+    visibility: number,
+    pop: number,
+    rain?: {
+        "1h": number,
+    },
+    snow?: {
+        "1h": number
+    }
 }
 
 interface DayForecast extends CommonForecast {
@@ -52,6 +66,8 @@ interface DayForecast extends CommonForecast {
         morn: number
     },
     pop: number,
+    rain?: number,
+    snow?: number
 }
 
 interface CommonForecast {
@@ -61,12 +77,9 @@ interface CommonForecast {
     dew_point: number,
     uvi: number,
     clouds: number,
-    visibility: number,
     wind_speed: number,
     wind_deg: number,
     wind_gust?: number,
-    rain?: number,
-    snow?: number,
 
     weather: WeatherConditions
 }
@@ -78,8 +91,8 @@ interface WeatherCondition {
     icon: string
 }
 
-type HourlyForecast = HourForecast[]
-type DailyForecast = DayForecast[]
+export type HourlyForecast = HourForecast[]
+export type DailyForecast = DayForecast[]
 type WeatherConditions = WeatherCondition[]
 
 const initialState: LocationState = {

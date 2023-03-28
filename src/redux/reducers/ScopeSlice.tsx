@@ -1,24 +1,29 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface ScopeState {
-    data: Scope
+    period: Scope
+    currentEntry: number
 }
 
 export type Scope = "current" | "48h" | "8days" | "air"
 
 const initialState: ScopeState = {
-    data: "current"
+    period: "current",
+    currentEntry: 0
 }
 
 const ScopeSlice = createSlice({
     name: "scope",
     initialState,
     reducers: {
-        setScope: (state: ScopeState, action: PayloadAction<Scope>) => {
-            state.data = action.payload
+        setPeriod: (state: ScopeState, action: PayloadAction<Scope>) => {
+            state.period = action.payload
+        },
+        setCurrentEntry: (state: ScopeState, action: PayloadAction<number>) => {
+            state.currentEntry = action.payload
         }
     }
 })
 
-export const {setScope} = ScopeSlice.actions
+export const {setPeriod, setCurrentEntry} = ScopeSlice.actions
 export default ScopeSlice.reducer
