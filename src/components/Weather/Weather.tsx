@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import WeatherDetail from "../App/WeatherDetails/WeatherDetail";
 import PeriodList from "../App/PeriodSelection/PeriodList";
+import AirQuality from "../App/AirQ/AirQuality";
 
 function Weather() {
     const [withDetails, setWithDetails] = useState(false)
@@ -34,7 +35,7 @@ function Weather() {
         <div className={styles.container}>
             <div className={styles.widget}>
                 <div id={styles.weatherWrapper}>
-                    <WeatherBasic/>
+                    {scopePeriod === "air" ? <AirQuality/> : <WeatherBasic/>}
                     {withDetails ? <WeatherDetail/> : null}
                     <div onClick={() => setWithDetails(prevState => !prevState)} id={styles.moreBtn}>
                         <div>

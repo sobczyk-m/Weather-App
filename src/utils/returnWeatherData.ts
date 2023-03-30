@@ -11,12 +11,12 @@ interface WeatherData {
     feelsLike: string,
     wind: string,
     uvi: string
-    rain?: number,
-    snow?: number,
-    visibility?: number,
+    rain?: string,
+    snow?: string,
+    visibility?: string,
     sunrise?: number,
     sunset?: number
-    pop?: number
+    pop?: string
 }
 
 export const returnWeatherData = (scope: string, currentEntry: number, current: CurrentForecast, hourly: HourlyForecast, daily: DailyForecast): WeatherData | undefined => {
@@ -32,13 +32,13 @@ export const returnWeatherData = (scope: string, currentEntry: number, current: 
                 uvi: current.uvi.toFixed(1),
                 clouds: current.clouds,
                 pressure: current.pressure,
-                visibility: current.visibility / 1000,
+                visibility: (current.visibility / 1000).toFixed(1),
                 dewPoint: current.dew_point.toFixed(1),
                 humidity: current.humidity,
                 sunrise: current.sunrise,
                 sunset: current.sunset,
-                rain: current.rain?.["1h"],
-                snow: current.snow?.["1h"]
+                rain: (current.rain?.["1h"])?.toFixed(),
+                snow: (current.snow?.["1h"])?.toFixed()
             }
         case "48h":
             return {
@@ -50,12 +50,12 @@ export const returnWeatherData = (scope: string, currentEntry: number, current: 
                 uvi: hourly[currentEntry].uvi.toFixed(1),
                 clouds: hourly[currentEntry].clouds,
                 pressure: hourly[currentEntry].pressure,
-                visibility: hourly[currentEntry].visibility / 1000,
+                visibility: (hourly[currentEntry].visibility / 1000).toFixed(1),
                 dewPoint: hourly[currentEntry].dew_point.toFixed(1),
                 humidity: hourly[currentEntry].humidity,
-                pop: hourly[currentEntry].pop * 100,
-                rain: hourly[currentEntry].rain?.["1h"],
-                snow: hourly[currentEntry].snow?.["1h"]
+                pop: (hourly[currentEntry].pop * 100).toFixed(0),
+                rain: (hourly[currentEntry].rain?.["1h"])?.toFixed(),
+                snow: (hourly[currentEntry].snow?.["1h"])?.toFixed()
             }
         case "8days":
             return {
@@ -71,9 +71,9 @@ export const returnWeatherData = (scope: string, currentEntry: number, current: 
                 humidity: daily[currentEntry].humidity,
                 sunrise: daily[currentEntry].sunrise,
                 sunset: daily[currentEntry].sunset,
-                pop: daily[currentEntry].pop * 100,
-                rain: daily[currentEntry].rain,
-                snow: daily[currentEntry].snow
+                pop: (daily[currentEntry].pop * 100).toFixed(),
+                rain: (daily[currentEntry].rain)?.toFixed(),
+                snow: (daily[currentEntry].snow)?.toFixed()
             }
     }
 }

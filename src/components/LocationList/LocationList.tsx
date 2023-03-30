@@ -3,6 +3,7 @@ import styles from './LocationList.module.pcss'
 import {useDispatch} from "react-redux";
 import {Forecast, setPlace, setWeather} from "../../redux/reducers/LocationSlice";
 import {getEndPoint} from "../../utils/getEndPoint";
+import {Air, setAirCoords, setAirData,} from "../../redux/reducers/AirSlice";
 
 export interface Location {
     country: string;
@@ -25,15 +26,23 @@ function LocationList({locations}: LocationListProps) {
     const getWeather = async (endpoint: string): Promise<Forecast> => {
         return getEndPoint(endpoint)
     }
+    const getAir = async (endpoint: string): Promise<Air> => {
+        return getEndPoint(endpoint)
+    }
 
     const handleWeather = async (lat: number, lon: number): Promise<void> => {
         try {
-            const oneCallApiUrl = 'https://api.openweathermap.org/data/3.0/onecall?'
+
             const apiKey = import.meta.env.VITE_OWM_API_KEY
-            const oneCallEndPoint =
-                oneCallApiUrl + "lat=" + lat + "&lon=" + lon + "&units=metric" + "&exclude=minutely,alerts" + "&appid=" + apiKey
+            const oneCallEndPoint = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,alerts&appid=${apiKey}`
+            const airEndPoint = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`
 
             const weather = await getWeather(oneCallEndPoint)
+            const air = await getAir(airEndPoint)
+
+            dispatch(setAirCoords(air.coord))
+            dispatch(setAirData(air.list[0]))
+
             dispatch(setWeather({
                 timezone: weather.timezone,
                 current: weather.current,
