@@ -45,179 +45,161 @@ function WeatherDetail() {
     <React.Fragment>
       {scopePeriod === "air" ? (
         <ul className={styles.details}>
-          <li className={styles.airDetail}>
-            <p className={styles.airValue}>
-              <span>
-                PM<sub>2.5</sub>:
-              </span>
-              <span>
-                {air!.components.pm2_5.toFixed(0)} μg/m<sup>3</sup>
-              </span>
-              <span className={styles.directive}>
-                {(
-                  (air!.components.pm2_5 / whoAirQualityDirectives["PM2.5"]) *
-                  100
-                ).toFixed()}
-                %
-              </span>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>
+              PM<sub>2.5</sub>:
+            </p>
+            <p className={styles.detailData}>
+              {air!.components.pm2_5.toFixed(0)} μg/m<sup>3</sup>
+            </p>
+            <p className={styles.directive}>
+              {(
+                (air!.components.pm2_5 / whoAirQualityDirectives["PM2.5"]) *
+                100
+              ).toFixed()}
+              %
             </p>
           </li>
-          <li className={styles.airDetail}>
-            <p className={styles.airValue}>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>
               <span>
                 PM<sub>10</sub>:
               </span>
-              <span>
-                {air!.components.pm10.toFixed(0)} μg/m<sup>3</sup>
-              </span>{" "}
-              <span className={styles.directive}>
-                {(
-                  (air!.components.pm10 / whoAirQualityDirectives.PM10) *
-                  100
-                ).toFixed()}
-                %
-              </span>
+            </p>
+            <p className={styles.detailData}>
+              {air!.components.pm10.toFixed(0)} μg/m<sup>3</sup>
+            </p>{" "}
+            <p className={styles.directive}>
+              {(
+                (air!.components.pm10 / whoAirQualityDirectives.PM10) *
+                100
+              ).toFixed()}
+              %
             </p>
           </li>
-          <li className={styles.airDetail}>
-            <p className={styles.airValue}>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>
               <span>
                 NO<sub>2</sub>:
-              </span>
-              <span>
-                {air!.components.no2.toFixed(0)} μg/m<sup>3</sup>
-              </span>
-              <span className={styles.directive}>
-                {(
-                  (air!.components.no2 / whoAirQualityDirectives.NO2) *
-                  100
-                ).toFixed()}
-                %
-              </span>
+              </span>{" "}
+            </p>
+            <p className={styles.detailData}>
+              {air!.components.no2.toFixed(0)} μg/m<sup>3</sup>
+            </p>
+            <p className={styles.directive}>
+              {(
+                (air!.components.no2 / whoAirQualityDirectives.NO2) *
+                100
+              ).toFixed()}
+              %
             </p>
           </li>
-          <li className={styles.airDetail}>
-            <p className={styles.airValue}>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>
               <span>
                 O<sub>3</sub>:
-              </span>
-              <span>
-                {air!.components.o3.toFixed(0)} μg/m<sup>3</sup>
               </span>{" "}
-              <span className={styles.directive}>
-                {(
-                  (air!.components.o3 / whoAirQualityDirectives.O3) *
-                  100
-                ).toFixed()}
-                %
-              </span>
+            </p>
+            <p className={styles.detailData}>
+              {air!.components.o3.toFixed(0)} μg/m<sup>3</sup>
+            </p>{" "}
+            <p className={styles.directive}>
+              {(
+                (air!.components.o3 / whoAirQualityDirectives.O3) *
+                100
+              ).toFixed()}
+              %
             </p>
           </li>
-          <li className={styles.airDetail}>
-            <p className={styles.airValue}>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>
               <span>
                 SO<sub>2</sub>:
-              </span>
-              <span>
-                {air!.components.so2.toFixed(0)} μg/m<sup>3</sup>
-              </span>
-              <span className={styles.directive}>
-                {(
-                  (air!.components.so2 / whoAirQualityDirectives.SO2) *
-                  100
-                ).toFixed()}
-                %
-              </span>
+              </span>{" "}
+            </p>
+            <p className={styles.detailData}>
+              {air!.components.so2.toFixed(0)} μg/m<sup>3</sup>
+            </p>
+            <p className={styles.directive}>
+              {(
+                (air!.components.so2 / whoAirQualityDirectives.SO2) *
+                100
+              ).toFixed()}
+              %
             </p>
           </li>
-          <li className={styles.airDetail}>
-            <p className={styles.airValue}>
-              <span>CO:</span>
-              <span>
-                {air!.components.co.toFixed(0)} μg/m<sup>3</sup>
-              </span>
-              <span className={styles.directive}>
-                {(
-                  (air!.components.co / whoAirQualityDirectives.CO) *
-                  100
-                ).toFixed()}
-                %
-              </span>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>
+              <span>CO:</span>{" "}
+            </p>
+            <p className={styles.detailData}>
+              {air!.components.co.toFixed(0)} μg/m<sup>3</sup>
+            </p>
+            <p className={styles.directive}>
+              {(
+                (air!.components.co / whoAirQualityDirectives.CO) *
+                100
+              ).toFixed()}
+              %
             </p>
           </li>
         </ul>
       ) : (
         <ul className={styles.details}>
-          <li className={styles.weatherDetail}>
-            <p>
-              Pressure:
-              <span>{weather?.pressure} hPa</span>
-            </p>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>Pressure:</p>
+            <p className={styles.detailData}>{weather?.pressure} hPa</p>
           </li>
-          <li className={styles.weatherDetail}>
-            <p>
-              Clouds:
-              <span>{weather?.clouds} %</span>
-            </p>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>Clouds:</p>
+            <p className={styles.detailData}>{weather?.clouds} %</p>
           </li>
-          <li className={styles.weatherDetail}>
-            <p>
-              Humidity:
-              <span>{weather?.humidity} %</span>
-            </p>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>Humidity:</p>{" "}
+            <p className={styles.detailData}>{weather?.humidity} %</p>
           </li>
           {weather?.sunrise ? (
-            <li className={styles.weatherDetail}>
-              <p>
-                Sunrise:
-                <span>{formatTime(weather?.sunrise, timezone, "hour")}</span>
+            <li className={styles.detail}>
+              <p className={styles.detailName}>Sunrise:</p>{" "}
+              <p className={styles.detailData}>
+                {formatTime(weather?.sunrise, timezone, "hour")}
               </p>
             </li>
           ) : null}
           {weather?.sunset ? (
-            <li className={styles.weatherDetail}>
-              <p>
-                Sunset:
-                <span>{formatTime(weather?.sunset, timezone, "hour")}</span>
+            <li className={styles.detail}>
+              <p className={styles.detailName}>Sunset:</p>{" "}
+              <p className={styles.detailData}>
+                {formatTime(weather?.sunset, timezone, "hour")}
               </p>
             </li>
           ) : null}
-          <li className={styles.weatherDetail}>
-            <p>
-              Dew point:
-              <span>{weather?.dewPoint} °C</span>
-            </p>
+          <li className={styles.detail}>
+            <p className={styles.detailName}>Dew point:</p>{" "}
+            <p className={styles.detailData}>{weather?.dewPoint} °C</p>
           </li>
           {weather?.pop ? (
-            <li className={styles.weatherDetail}>
-              <p>
-                Rain probability:
-                <span>{weather?.pop}%</span>
-              </p>
+            <li className={styles.detail}>
+              <p className={styles.detailName}>Rain probability:</p>{" "}
+              <p className={styles.detailData}>{weather?.pop}%</p>
             </li>
           ) : null}
           {weather?.visibility ? (
-            <li className={styles.weatherDetail}>
-              <p>
-                Visibility:
-                <span>{weather?.visibility} km</span>
-              </p>
+            <li className={styles.detail}>
+              <p className={styles.detailName}>Visibility:</p>{" "}
+              <p className={styles.detailData}>{weather?.visibility} km</p>
             </li>
           ) : null}
           {weather?.rain ? (
-            <li className={styles.weatherDetail}>
-              <p>
-                Rain:
-                <span>{weather?.rain} mm/h</span>
-              </p>
+            <li className={styles.detail}>
+              <p className={styles.detailName}>Rain:</p>{" "}
+              <p className={styles.detailData}>{weather?.rain} mm/h</p>
             </li>
           ) : null}
           {weather?.snow ? (
-            <li className={styles.weatherDetail}>
-              <p>
-                Snow:
-                <span>{weather?.snow} mm/h</span>
-              </p>
+            <li className={styles.detail}>
+              <p className={styles.detailName}>Snow:</p>{" "}
+              <p className={styles.detailData}>{weather?.snow} mm/h</p>
             </li>
           ) : null}
         </ul>

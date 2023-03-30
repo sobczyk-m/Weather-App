@@ -7,20 +7,21 @@
 }
 
 #locationName {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   overflow-wrap: break-word;
   padding: 30px 0 0 30px;
 }
 
 #description {
   display: flex;
+  gap: 30px;
+  padding: 0 30px 30px 15px;
 }
 
 #leftColumn {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 0 20px 0;
 
   & #icon,
   & #iconDescription {
@@ -29,8 +30,7 @@
   }
 
   & #iconDescription {
-    font-size: 1.3rem;
-    padding: 0 30px 0 30px;
+    font-size: 1.1rem;
     display: flex;
     justify-content: center;
     text-align: justify-all;
@@ -38,7 +38,6 @@
 }
 
 #rightColumn {
-  font-size: 1.1rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -47,17 +46,17 @@
 
   > :nth-child(n):not(#temp) {
     width: 100%;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #535151;
   }
 
   #temp {
-    font-size: 5rem;
+    font-size: 4rem;
     display: flex;
     gap: 5px;
 
     & #unit {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
   }
 }

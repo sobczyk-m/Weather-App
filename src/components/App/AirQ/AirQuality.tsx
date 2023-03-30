@@ -16,15 +16,15 @@ function AirQuality() {
   const returnFaceIcon = (airIndex: number) => {
     switch (airIndex) {
       case 1:
-        return <BsEmojiHeartEyes className={styles.icon} />;
+        return <BsEmojiHeartEyes className={`${styles.icon} ${styles.green}`} />;
       case 2:
-        return <BsEmojiSmile className={styles.icon} />;
+        return <BsEmojiSmile className={`${styles.icon} ${styles.yellow}`} />;
       case 3:
-        return <BsEmojiNeutral className={styles.icon} />;
+        return <BsEmojiNeutral className={`${styles.icon} ${styles.orange}`} />;
       case 4:
-        return <BsEmojiFrown className={styles.icon} />;
+        return <BsEmojiFrown className={`${styles.icon} ${styles.red}`} />;
       case 5:
-        return <BsEmojiDizzy className={styles.icon} />;
+        return <BsEmojiDizzy className={`${styles.icon} ${styles.purple}`} />;
       default:
         throw new Error("Wrong airIndex");
     }

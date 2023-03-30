@@ -61,7 +61,9 @@ function Weather() {
           <SectionBar />
         </div>
         {scopePeriod === "48h" || scopePeriod === "8days" ? (
+                // <section className={styles.period}>
           <PeriodList />
+                // </section>
         ) : null}
       </div>
     </div>
