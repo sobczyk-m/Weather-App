@@ -1,9 +1,9 @@
-export const getEndPoint = async<Type>(endPoint: string): Promise<Type> => {
-    const response = await fetch(endPoint)
+export const getEndPoint = async <Type>(endPoint: string): Promise<Type> => {
+  const response = await fetch(endPoint);
 
-    if (response.ok) {
-        return response.json();
-    } else {
-        return Promise.reject(response);
-    }
-}
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(response);
+  }
+};

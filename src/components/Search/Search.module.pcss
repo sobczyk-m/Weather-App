@@ -1,63 +1,64 @@
 .searchWrapper {
-    width: 80%;
-    max-width: 800px;
+  width: 80%;
+  max-width: 800px;
 }
 
 .search {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
 
-    display: flex;
-    border: 2px solid black;
-    border-radius: var(--big-radius);
+  display: flex;
+  border: 2px solid black;
+  border-radius: var(--big-radius);
 
-    &.noItems {
-        border: 0;
-        box-shadow: 0 0 10px var(--strong-blue);
-    }
+  &.noItems {
+    border: 0;
+    box-shadow: 0 0 10px var(--strong-blue);
+  }
 }
 
 .searchInput {
-    font-size: 1.5rem;
-    padding: 15px 0 15px 30px;
-    width: 100%;
-    border: 0;
+  font-size: 1.5rem;
+  padding: 15px 0 15px 30px;
+  width: 100%;
+  border: 0;
 }
 
-.cancelBtn, .sendBtn {
-    font-size: 1.8rem;
-    opacity: 0.5;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cancelBtn,
+.sendBtn {
+  font-size: 1.8rem;
+  opacity: 0.5;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    &:hover {
-        opacity: 1;
-    }
+  &:hover {
+    opacity: 1;
+  }
 
-    &.noInput {
-        visibility: hidden;
-    }
+  &.noInput {
+    visibility: hidden;
+  }
 }
 
 .cancelBtn {
-    border-left: var(--small-border);
+  border-left: var(--small-border);
 
-    &:hover {
-        color: var(--red);
-    }
+  &:hover {
+    color: var(--red);
+  }
 }
 
 .sendBtn {
-    border-right: var(--small-border);
+  border-right: var(--small-border);
 
-    &:hover {
-        color: var(--medium-blue);
-    }
+  &:hover {
+    color: var(--medium-blue);
+  }
 }
 
 .locationsWrapper {
-    position: relative;
-    width: 90%;
-    left: 5%;
+  position: relative;
+  width: 90%;
+  left: 5%;
 }

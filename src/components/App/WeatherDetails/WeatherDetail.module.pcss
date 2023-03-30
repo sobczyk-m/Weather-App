@@ -1,44 +1,42 @@
 .details {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    padding: 30px 0 20px 0;
-    gap: 30px 50px;
-    justify-items: center;
-    align-content: center;
-
-
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  padding: 30px 0 20px 0;
+  gap: 30px 50px;
+  justify-items: center;
+  align-content: center;
 }
 
 .airDetail {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
+  display: flex;
+
+  .airValue {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    justify-content: space-between;
+    text-align: center;
 
-    .airValue {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        white-space: nowrap;
-        justify-content: space-between;
-        text-align: center;
-
-        .directive {
-            color: #535151;
-            font-size: 0.9rem;
-        }
+    .directive {
+      color: #535151;
+      font-size: 0.9rem;
     }
+  }
 }
 
 .weatherDetail {
-    font-size: 1.1rem;
-    display: flex;
+  font-size: 1.1rem;
+  display: flex;
 
-    :nth-child(n) {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        white-space: nowrap;
-        justify-content: space-between;
-        text-align: center;
-    }
+  :nth-child(n) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    justify-content: space-between;
+    text-align: center;
+  }
 }
