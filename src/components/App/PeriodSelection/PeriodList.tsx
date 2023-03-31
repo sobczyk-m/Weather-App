@@ -60,7 +60,7 @@ function PeriodList() {
               />
             </figure>
             <p className={styles.temp}>
-              {day.temp.max.toString().split(".")[0]} °C
+              {day.temp.day.toString().split(".")[0]} °C
             </p>
           </li>
         ));
