@@ -27,14 +27,19 @@ function PeriodList() {
             key={hour.dt}
             className={styles.period}
           >
-            <p>{formatTime(hour.dt, timezone, "hour")}</p>
-            <figure>
+            <p className={styles.timeStamp}>
+              {formatTime(hour.dt, timezone, "hour")}
+            </p>
+            <figure className={styles.iconContainer}>
               <img
-                src={getWeatherIcon(hour.weather[0].icon, "small")}
-                alt={`Weather condition: ${hour.weather[0].description}`}
+                className={styles.weatherIcon}
+                src={getWeatherIcon(hour.weather[0].icon, "medium")}
+                alt={hour.weather[0].description}
               />
             </figure>
-            <p>{hour.temp.toString().split(".")[0]} °C</p>
+            <p className={styles.temp}>
+              {hour.temp.toString().split(".")[0]} °C
+            </p>
           </li>
         ));
       case "8days":
@@ -44,14 +49,19 @@ function PeriodList() {
             key={day.dt}
             className={styles.period}
           >
-            <p>{formatTime(day.dt, timezone, "dayOfMonth")}</p>
-            <figure>
+            <p className={styles.timeStamp}>
+              {formatTime(day.dt, timezone, "dayOfMonth")}
+            </p>
+            <figure className={styles.iconContainer}>
               <img
-                src={getWeatherIcon(day.weather[0].icon, "small")}
-                alt={`Weather condition: ${day.weather[0].description}`}
+                className={styles.weatherIcon}
+                src={getWeatherIcon(day.weather[0].icon, "medium")}
+                alt={day.weather[0].description}
               />
             </figure>
-            <p>{day.temp.max.toString().split(".")[0]} °C</p>
+            <p className={styles.temp}>
+              {day.temp.max.toString().split(".")[0]} °C
+            </p>
           </li>
         ));
     }
