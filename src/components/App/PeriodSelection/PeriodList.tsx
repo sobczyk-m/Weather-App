@@ -4,6 +4,7 @@ import { RootState } from "../../../redux/store";
 import { Scope, setCurrentEntry } from "../../../redux/reducers/ScopeSlice";
 import { getWeatherIcon } from "../../../utils/getWeatherIcon";
 import { formatTime } from "../../../utils/formatTime";
+import { formatTemp } from "../../../utils/formatTemp";
 
 function PeriodList() {
   const dispatch = useDispatch();
@@ -37,9 +38,7 @@ function PeriodList() {
                 alt={hour.weather[0].description}
               />
             </figure>
-            <p className={styles.temp}>
-              {hour.temp.toString().split(".")[0]} °C
-            </p>
+            <p className={styles.temp}>{formatTemp(hour.temp)} °C</p>
           </li>
         ));
       case "8days":
@@ -59,9 +58,7 @@ function PeriodList() {
                 alt={day.weather[0].description}
               />
             </figure>
-            <p className={styles.temp}>
-              {day.temp.day.toString().split(".")[0]} °C
-            </p>
+            <p className={styles.temp}>{formatTemp(day.temp.day)} °C</p>
           </li>
         ));
     }

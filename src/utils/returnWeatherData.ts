@@ -3,6 +3,7 @@ import {
   DailyForecast,
   HourlyForecast,
 } from "../redux/reducers/LocationSlice";
+import { formatTemp } from "./formatTemp";
 
 interface WeatherData {
   pressure: number;
@@ -35,8 +36,8 @@ export const returnWeatherData = (
       return {
         iconCode: current.weather[0].icon,
         iconDescription: current.weather[0].description,
-        temp: current.temp.toString().split(".")[0],
-        feelsLike: current.feels_like.toString().split(".")[0],
+        temp: formatTemp(current.temp),
+        feelsLike: formatTemp(current.feels_like),
         wind: ((current.wind_speed * 3600) / 1000).toFixed(1),
         uvi: current.uvi.toFixed(1),
         clouds: current.clouds,
@@ -53,8 +54,8 @@ export const returnWeatherData = (
       return {
         iconCode: hourly[currentEntry].weather[0].icon,
         iconDescription: hourly[currentEntry].weather[0].description,
-        temp: hourly[currentEntry].temp.toString().split(".")[0],
-        feelsLike: hourly[currentEntry].feels_like.toString().split(".")[0],
+        temp: formatTemp(hourly[currentEntry].temp),
+        feelsLike: formatTemp(hourly[currentEntry].feels_like),
         wind: ((hourly[currentEntry].wind_speed * 3600) / 1000).toFixed(1),
         uvi: hourly[currentEntry].uvi.toFixed(1),
         clouds: hourly[currentEntry].clouds,
@@ -70,8 +71,8 @@ export const returnWeatherData = (
       return {
         iconCode: daily[currentEntry].weather[0].icon,
         iconDescription: daily[currentEntry].weather[0].description,
-        temp: daily[currentEntry].temp.day.toString().split(".")[0],
-        feelsLike: daily[currentEntry].feels_like.day.toString().split(".")[0],
+        temp: formatTemp(daily[currentEntry].temp.day),
+        feelsLike: formatTemp(daily[currentEntry].feels_like.day),
         wind: ((daily[currentEntry].wind_speed * 3600) / 1000).toFixed(1),
         uvi: daily[currentEntry].uvi.toFixed(1),
         clouds: daily[currentEntry].clouds,
