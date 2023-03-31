@@ -16,7 +16,9 @@ function AirQuality() {
   const returnFaceIcon = (airIndex: number) => {
     switch (airIndex) {
       case 1:
-        return <BsEmojiHeartEyes className={`${styles.icon} ${styles.green}`} />;
+        return (
+          <BsEmojiHeartEyes className={`${styles.icon} ${styles.green}`} />
+        );
       case 2:
         return <BsEmojiSmile className={`${styles.icon} ${styles.yellow}`} />;
       case 3:
@@ -51,9 +53,9 @@ function AirQuality() {
     <React.Fragment>
       {air ? (
         <figure className={styles.airStatus}>
-          {returnFaceIcon(air.main.aqi)}
+          {returnFaceIcon(air.main!.aqi)}
           <figcaption id={styles.iconDescription}>
-            {returnAirCondition(air.main.aqi)}
+            {returnAirCondition(air.main!.aqi)}
           </figcaption>
         </figure>
       ) : null}

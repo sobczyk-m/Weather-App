@@ -6,10 +6,10 @@ export interface Air {
 }
 
 export interface AirData {
-  dt: number;
+  dt: number | null;
   main: {
     aqi: number;
-  };
+  } | null;
   components: {
     co: number;
     no: number;
@@ -19,12 +19,12 @@ export interface AirData {
     pm2_5: number;
     pm10: number;
     nh3: number;
-  };
+  } | null;
 }
 
 interface Coord {
-  lon: number;
-  lat: number;
+  lon: number | null;
+  lat: number | null;
 }
 
 interface AirState {

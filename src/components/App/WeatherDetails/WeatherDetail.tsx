@@ -50,11 +50,11 @@ function WeatherDetail() {
               PM<sub>2.5</sub>:
             </p>
             <p className={styles.detailData}>
-              {air!.components.pm2_5.toFixed(0)} μg/m<sup>3</sup>
+              {air!.components!.pm2_5.toFixed(0)} μg/m<sup>3</sup>
             </p>
             <p className={styles.directive}>
               {(
-                (air!.components.pm2_5 / whoAirQualityDirectives["PM2.5"]) *
+                (air!.components!.pm2_5 / whoAirQualityDirectives["PM2.5"]) *
                 100
               ).toFixed()}
               %
@@ -67,11 +67,11 @@ function WeatherDetail() {
               </span>
             </p>
             <p className={styles.detailData}>
-              {air!.components.pm10.toFixed(0)} μg/m<sup>3</sup>
+              {air!.components!.pm10.toFixed(0)} μg/m<sup>3</sup>
             </p>{" "}
             <p className={styles.directive}>
               {(
-                (air!.components.pm10 / whoAirQualityDirectives.PM10) *
+                (air!.components!.pm10 / whoAirQualityDirectives.PM10) *
                 100
               ).toFixed()}
               %
@@ -84,11 +84,11 @@ function WeatherDetail() {
               </span>{" "}
             </p>
             <p className={styles.detailData}>
-              {air!.components.no2.toFixed(0)} μg/m<sup>3</sup>
+              {air!.components!.no2.toFixed(0)} μg/m<sup>3</sup>
             </p>
             <p className={styles.directive}>
               {(
-                (air!.components.no2 / whoAirQualityDirectives.NO2) *
+                (air!.components!.no2 / whoAirQualityDirectives.NO2) *
                 100
               ).toFixed()}
               %
@@ -101,11 +101,11 @@ function WeatherDetail() {
               </span>{" "}
             </p>
             <p className={styles.detailData}>
-              {air!.components.o3.toFixed(0)} μg/m<sup>3</sup>
+              {air!.components!.o3.toFixed(0)} μg/m<sup>3</sup>
             </p>{" "}
             <p className={styles.directive}>
               {(
-                (air!.components.o3 / whoAirQualityDirectives.O3) *
+                (air!.components!.o3 / whoAirQualityDirectives.O3) *
                 100
               ).toFixed()}
               %
@@ -118,11 +118,11 @@ function WeatherDetail() {
               </span>{" "}
             </p>
             <p className={styles.detailData}>
-              {air!.components.so2.toFixed(0)} μg/m<sup>3</sup>
+              {air!.components!.so2.toFixed(0)} μg/m<sup>3</sup>
             </p>
             <p className={styles.directive}>
               {(
-                (air!.components.so2 / whoAirQualityDirectives.SO2) *
+                (air!.components!.so2 / whoAirQualityDirectives.SO2) *
                 100
               ).toFixed()}
               %
@@ -133,11 +133,11 @@ function WeatherDetail() {
               <span>CO:</span>{" "}
             </p>
             <p className={styles.detailData}>
-              {air!.components.co.toFixed(0)} μg/m<sup>3</sup>
+              {air!.components!.co.toFixed(0)} μg/m<sup>3</sup>
             </p>
             <p className={styles.directive}>
               {(
-                (air!.components.co / whoAirQualityDirectives.CO) *
+                (air!.components!.co / whoAirQualityDirectives.CO) *
                 100
               ).toFixed()}
               %
