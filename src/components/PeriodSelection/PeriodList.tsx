@@ -1,10 +1,10 @@
 import styles from "./PeriodList.module.pcss";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { Scope, setCurrentEntry } from "../../../redux/reducers/ScopeSlice";
-import { getWeatherIcon } from "../../../utils/getWeatherIcon";
-import { formatTime } from "../../../utils/formatTime";
-import { formatTemp } from "../../../utils/formatTemp";
+import { RootState } from "../../redux/store";
+import { Scope, setCurrentEntry } from "../../redux/reducers/ScopeSlice";
+import { getWeatherIcon } from "../../utils/getWeatherIcon";
+import { formatTime } from "../../utils/formatTime";
+import { formatTemp } from "../../utils/formatTemp";
 
 function PeriodList() {
   const dispatch = useDispatch();

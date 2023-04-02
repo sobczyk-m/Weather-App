@@ -8,7 +8,7 @@ import {
   BsEmojiSmile,
 } from "react-icons/all";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../redux/store";
 
 function AirQuality() {
   const air = useSelector((state: RootState) => state.air.list);

@@ -1,12 +1,12 @@
 import styles from "./WeatherBasic.module.pcss";
-import stylesWeather from "../../Weather/Weather.module.pcss";
+import stylesWeather from "../Weather/Weather.module.pcss";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { getWeatherIcon } from "../../../utils/getWeatherIcon";
-import { returnWeatherData } from "../../../utils/returnWeatherData";
+import { RootState } from "../../redux/store";
+import { getWeatherIcon } from "../../utils/getWeatherIcon";
+import { returnWeatherData } from "../../utils/returnWeatherData";
 import { AiOutlineSearch } from "react-icons/all";
-import { resetReduxData } from "../../../utils/resetReduxData";
+import { resetReduxData } from "../../utils/resetReduxData";
 
 function WeatherBasic() {
   const placeName = useSelector(

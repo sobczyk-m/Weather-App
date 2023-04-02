@@ -1,12 +1,12 @@
 import styles from "./SectionBar.module.pcss";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../redux/store";
 import {
   Scope,
   setCurrentEntry,
   setPeriod,
-} from "../../../redux/reducers/ScopeSlice";
+} from "../../redux/reducers/ScopeSlice";
 
 function SectionBar() {
   const dispatch = useDispatch();

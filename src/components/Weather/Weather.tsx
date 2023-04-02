@@ -1,18 +1,18 @@
 import styles from "./Weather.module.pcss";
-import sectionBarStyles from "../App/SectionBar/SectionBar.module.pcss";
+import sectionBarStyles from "../SectionBar/SectionBar.module.pcss";
 import React, { useEffect, useState } from "react";
-import WeatherBasic from "../App/WeatherBasic/WeatherBasic";
+import WeatherBasic from "../WeatherBasic/WeatherBasic";
 import {
   AiOutlineDoubleLeft,
   AiOutlineDoubleRight,
   AiOutlineSearch,
 } from "react-icons/all";
-import SectionBar from "../App/SectionBar/SectionBar";
+import SectionBar from "../SectionBar/SectionBar";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import WeatherDetail from "../App/WeatherDetails/WeatherDetail";
-import PeriodList from "../App/PeriodSelection/PeriodList";
-import AirQuality from "../App/AirQ/AirQuality";
+import WeatherDetail from "../WeatherDetails/WeatherDetail";
+import PeriodList from "../PeriodSelection/PeriodList";
+import AirQuality from "../AirQuality/AirQuality";
 import { resetReduxData } from "../../utils/resetReduxData";
 
 function Weather() {

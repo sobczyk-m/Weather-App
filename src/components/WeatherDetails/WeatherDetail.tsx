@@ -1,8 +1,8 @@
 import styles from "./WeatherDetail.module.pcss";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { formatTime } from "../../../utils/formatTime";
-import { returnWeatherData } from "../../../utils/returnWeatherData";
+import { RootState } from "../../redux/store";
+import { formatTime } from "../../utils/formatTime";
+import { returnWeatherData } from "../../utils/returnWeatherData";
 import React from "react";
 
 function WeatherDetail() {
