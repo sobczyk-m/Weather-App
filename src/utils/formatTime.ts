@@ -5,7 +5,7 @@ export function formatTime(
   timezone: string,
   dateFormat: Date
 ) {
-  console.log(timezone);
+
   const chooseDateFormat = (): Object => {
     switch (dateFormat) {
       case "hour":
