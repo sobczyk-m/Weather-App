@@ -33,6 +33,16 @@ function Weather() {
   }, [withDetails]);
 
   useEffect(() => {
+    if (scopePeriod === "air") {
+      document
+        .getElementsByClassName(styles.widget)[0]
+        .classList.add(styles.activeAir);
+    } else {
+      document
+        .getElementsByClassName(styles.widget)[0]
+        .classList.remove(styles.activeAir);
+    }
+
     if (scopePeriod === "48h" || scopePeriod === "8days") {
       document
         .getElementById(sectionBarStyles.bar)
