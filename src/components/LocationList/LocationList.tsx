@@ -65,6 +65,7 @@ function LocationList({ locations }: LocationListProps) {
       collection.map((location: Location) => {
         return (
           <li
+            key={`${location.lat},${location.lon}`}
             className={styles.location}
             onClick={async () => {
               dispatch(
