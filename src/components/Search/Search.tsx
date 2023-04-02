@@ -12,8 +12,32 @@ function Search() {
   const [locations, setLocations] = useState<Locations>(null);
 
   useEffect(() => {
+    if (focus) {
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [focus, input]);
+
+  useEffect(() => {
     handleNoInput();
   }, [input]);
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    switch (true) {
+      case e.key === "Enter": {
+        handleSendClick();
+        break;
+      }
+      case e.key === "Delete": {
+        handleCancelClick();
+        break;
+      }
+      default:
+        break;
+    }
+  };
 
   const getLocationList = async (
     endPoint: string
