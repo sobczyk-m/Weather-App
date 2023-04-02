@@ -1,3 +1,5 @@
+@import "../../../mediaQueries.pcss";
+
 .periodList {
   align-items: center;
   display: flex;
@@ -33,4 +35,10 @@
 .weatherIcon {
   height: auto;
   width: 80%;
+}
+
+@media (--viewport-S) {
+  .period {
+    min-width: 110px;
+  }
 }

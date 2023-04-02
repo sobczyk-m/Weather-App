@@ -1,3 +1,20 @@
+@import "./mediaQueries.pcss";
+
+:root {
+  --big-radius: 40px;
+  --small-radius: 20px;
+  --small-border: 1px solid black;
+  --red: #f71c36;
+  --light-blue: #a3b3ff;
+  --medium-blue: #758bfd;
+  --strong-blue: #365af7;
+  --main-green: #619b8a;
+  --main-white: #f4f4f8;
+  --secondary-white: #e5e6e4;
+  --creamy: #fce8c8;
+  --redish: #e56b6f;
+}
+
 *,
 ::before,
 ::after {
@@ -8,6 +25,7 @@
 
 html {
   font-size: 22px;
+  background-color: whitesmoke;
 }
 
 *:focus {
@@ -16,4 +34,24 @@ html {
 
 li {
   list-style: none;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  max-height: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+@media (--viewport-S) {
+  #root {
+    min-height: 100vh;
+    min-width: 100vw;
+    height: auto;
+    width: auto;
+  }
 }

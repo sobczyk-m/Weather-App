@@ -1,10 +1,12 @@
+@import "../../mediaQueries.pcss";
+
 .searchWrapper {
   width: 80%;
   max-width: 800px;
 }
 
 .search {
-  font-size: 2.5rem;
+  font-size: 1.1rem;
   display: flex;
   border: 2px solid black;
   border-radius: var(--big-radius);
@@ -17,15 +19,15 @@
 
 .searchInput {
   background-color: inherit;
-  font-size: 1.3rem;
-  padding: 15px 0 15px 30px;
+  font-size: 1.2em;
+  padding: 15px;
   width: 100%;
   border: 0;
 }
 
 .cancelBtn,
 .sendBtn {
-  font-size: 1.6rem;
+  font-size: 1.6em;
   opacity: 0.5;
   padding: 15px;
   display: flex;
@@ -61,4 +63,39 @@
   position: relative;
   width: 90%;
   left: 5%;
+}
+
+@media (--viewport-XL) {
+  .searchWrapper {
+    width: 95%;
+    padding: 0;
+  }
+}
+
+@media (--viewport-S) {
+  .searchInput {
+    font-size: 0.9em;
+  }
+}
+
+@media (--viewport-XS) {
+  .search {
+    font-size: 0.7rem;
+  }
+}
+
+@media (--viewport-XXS) {
+  .search {
+    font-size: 0.4rem;
+  }
+
+  .searchInput {
+    padding: 10px;
+    font-size: 1.2em;
+  }
+
+  .sendBtn,
+  .cancelBtn {
+    padding: 10px;
+  }
 }

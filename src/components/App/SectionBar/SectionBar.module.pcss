@@ -5,6 +5,7 @@
   height: 100%;
   border-radius: inherit;
   border-top: var(--small-border);
+  text-align: center;
 
   :nth-child(n) {
     width: 100%;
@@ -12,14 +13,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: var(--section-border);
+    border-right: var(--small-border);
   }
 
   :first-child {
     border: none;
     border-bottom-left-radius: inherit;
     border-top-left-radius: inherit;
-    border-right: var(--section-border);
+    border-right: var(--small-border);
   }
 
   :last-child {
@@ -34,7 +35,7 @@
 }
 
 .activePeriod {
-  border-bottom: 1px solid black !important;
+  border-bottom: var(--small-border) !important;
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }

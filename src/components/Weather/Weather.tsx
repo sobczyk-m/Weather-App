@@ -13,10 +13,7 @@ import { RootState } from "../../redux/store";
 import WeatherDetail from "../App/WeatherDetails/WeatherDetail";
 import PeriodList from "../App/PeriodSelection/PeriodList";
 import AirQuality from "../App/AirQ/AirQuality";
-import Search from "../Search/Search";
-import { setPlace, setWeather } from "../../redux/reducers/LocationSlice";
-import { setCurrentEntry, setPeriod } from "../../redux/reducers/ScopeSlice";
-import { setAirCoords, setAirData } from "../../redux/reducers/AirSlice";
+import { resetReduxData } from "../../utils/resetReduxData";
 
 function Weather() {
   const [withDetails, setWithDetails] = useState(false);
@@ -47,29 +44,6 @@ function Weather() {
     }
   }, [scopePeriod]);
 
-  const showSearch = () => {
-    dispatch(setAirCoords({ lon: null, lat: null }));
-    dispatch(setAirData({ dt: null, main: null, components: null }));
-
-    dispatch(
-      setPlace({
-        name: "",
-        lat: null,
-        lon: null,
-      })
-    );
-    dispatch(
-      setWeather({
-        timezone: null,
-        current: null,
-        hourly: null,
-        daily: null,
-      })
-    );
-    dispatch(setPeriod("current"));
-    dispatch(setCurrentEntry(0));
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.widget}>
@@ -77,14 +51,22 @@ function Weather() {
           {scopePeriod === "air" ? <AirQuality /> : <WeatherBasic />}
           {withDetails ? <WeatherDetail /> : null}
           <div className={styles.toolsPallet}>
-            <button className={styles.btn} onClick={showSearch}>
+            <button
+              className={styles.btn}
+              id={styles.searchBtn}
+              onClick={() => resetReduxData(dispatch)}
+            >
               <AiOutlineSearch />
             </button>
             <button
               className={styles.btn}
               onClick={() => setWithDetails((prevState) => !prevState)}
             >
-              {withDetails ? <AiOutlineDoubleLeft /> : <AiOutlineDoubleRight />}
+              {withDetails ? (
+                <AiOutlineDoubleLeft id={styles.lessBtn} />
+              ) : (
+                <AiOutlineDoubleRight id={styles.moreBtn} />
+              )}
             </button>
           </div>
         </div>

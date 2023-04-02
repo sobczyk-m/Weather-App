@@ -1,3 +1,5 @@
+@import "../../mediaQueries.pcss";
+
 #locations {
   width: 100%;
   position: absolute;
@@ -8,9 +10,10 @@
 }
 
 .location {
-  font-size: 0.8rem;
-  padding: 15px 5% 15px 10%;
+  font-size: 0.9rem;
+  padding: 15px 6% 15px 6%;
   list-style: none;
+  overflow: auto;
 
   &:hover {
     background-color: var(--light-blue);
@@ -23,5 +26,17 @@
 
   &:nth-child(n):not(:first-child) {
     border-top: var(--small-border);
+  }
+}
+
+@media (--viewport-XS) {
+  .location {
+    font-size: 0.8rem;
+  }
+}
+
+@media (--viewport-XXS) {
+  .location {
+    font-size: 0.6rem;
   }
 }

@@ -1,9 +1,12 @@
 import styles from "./WeatherBasic.module.pcss";
+import stylesWeather from "../../Weather/Weather.module.pcss";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { getWeatherIcon } from "../../../utils/getWeatherIcon";
 import { returnWeatherData } from "../../../utils/returnWeatherData";
+import { AiOutlineSearch } from "react-icons/all";
+import { resetReduxData } from "../../../utils/resetReduxData";
 
 function WeatherBasic() {
   const placeName = useSelector(
@@ -22,7 +25,7 @@ function WeatherBasic() {
   const dailyWeather = useSelector(
     (state: RootState) => state.location.weather.daily
   )!;
-
+  const dispatch = useDispatch();
   const weather = returnWeatherData(
     scopePeriod,
     currentEntry,
@@ -34,7 +37,16 @@ function WeatherBasic() {
   return (
     <React.Fragment>
       <div id={styles.weather}>
-        <span id={styles.locationName}>{placeName}</span>
+        <div className={styles.headerWrapper}>
+          <span id={styles.locationName}>{placeName}</span>
+          <button
+            className={stylesWeather.btn}
+            id={styles.searchBtn}
+            onClick={() => resetReduxData(dispatch)}
+          >
+            <AiOutlineSearch />
+          </button>
+        </div>
         <div id={styles.description}>
           <div id={styles.leftColumn}>
             <figure>
