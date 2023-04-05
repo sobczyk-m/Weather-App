@@ -1,17 +1,21 @@
 import styles from "./AirQuality.module.pcss";
 import React from "react";
 import {
+  AiOutlineSearch,
   BsEmojiDizzy,
   BsEmojiFrown,
   BsEmojiHeartEyes,
   BsEmojiNeutral,
   BsEmojiSmile,
 } from "react-icons/all";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import stylesWeather from "../Weather/Weather.module.pcss";
+import { resetReduxData } from "../../utils/resetReduxData";
 
 function AirQuality() {
   const air = useSelector((state: RootState) => state.air.list);
+  const dispatch = useDispatch();
 
   const returnFaceIcon = (airIndex: number) => {
     switch (airIndex) {
@@ -52,12 +56,21 @@ function AirQuality() {
   return (
     <React.Fragment>
       {air ? (
-        <figure className={styles.airStatus}>
-          {returnFaceIcon(air.main!.aqi)}
-          <figcaption id={styles.iconDescription}>
-            {returnAirCondition(air.main!.aqi)}
-          </figcaption>
-        </figure>
+        <React.Fragment>
+          <button
+            className={stylesWeather.btn}
+            id={styles.searchBtn}
+            onClick={() => resetReduxData(dispatch)}
+          >
+            <AiOutlineSearch />
+          </button>
+          <figure className={styles.airStatus}>
+            {returnFaceIcon(air.main!.aqi)}
+            <figcaption id={styles.iconDescription}>
+              {returnAirCondition(air.main!.aqi)}
+            </figcaption>
+          </figure>
+        </React.Fragment>
       ) : null}
     </React.Fragment>
   );
